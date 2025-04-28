@@ -9,7 +9,8 @@ import com.vinurl.component.AudioComponent;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.HudLayerRegistrationCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.IdentifiedLayer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -19,6 +20,7 @@ import java.util.concurrent.CompletableFuture;
 import static com.vinurl.VinURL.AUDIO_COMPONENT;
 import static com.vinurl.VinURL.CUSTOM_RECORD;
 import static com.vinurl.util.Constants.LOGGER;
+import static com.vinurl.util.Constants.PROGRESS_HUD_ID;;
 
 public class VinURLClient implements ClientModInitializer {
 	public static final Minecraft CLIENT = Minecraft.getInstance();
@@ -59,8 +61,10 @@ public class VinURLClient implements ClientModInitializer {
 			Executable.killAllProcesses();
 		});
 
-		HudRenderCallback.EVENT.register((drawContext, tickDelta) -> {
-			ProgressOverlay.render(drawContext);
+		HudLayerRegistrationCallback.EVENT.register(layeredDrawerWrapper -> {
+			layeredDrawerWrapper.addLayer(IdentifiedLayer.of(PROGRESS_HUD_ID, (drawContext, tickDelta) -> {
+				ProgressOverlay.render(drawContext);
+			}));
 		});
 	}
 }
