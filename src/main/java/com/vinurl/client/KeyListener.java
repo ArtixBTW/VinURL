@@ -9,6 +9,8 @@ import org.lwjgl.glfw.GLFW;
 
 import java.util.concurrent.CompletableFuture;
 
+import static com.vinurl.util.Constants.KEY_MAPPING_ID;
+
 public class KeyListener {
 	private static final int KEY_PRESS_TIMEOUT_MILLIS = 5000;
 	private static KeyMapping acceptKey;
@@ -20,7 +22,7 @@ public class KeyListener {
 			"key.vinurl.accept",
 			InputConstants.Type.KEYSYM,
 			GLFW.GLFW_KEY_Y,
-			"key.category.vinurl.mapping"
+			KeyMapping.Category.register(KEY_MAPPING_ID)
 		));
 
 		ClientTickEvents.END_CLIENT_TICK.register((client) -> {
