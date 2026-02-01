@@ -1,8 +1,8 @@
 package com.vinurl.sound;
 
 
-import net.minecraft.Util;
 import net.minecraft.client.sounds.JOrbisAudioStream;
+import net.minecraft.util.Util;
 
 import java.io.IOException;
 import java.io.InputStream;

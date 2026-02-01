@@ -2,8 +2,8 @@ package com.vinurl.util;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.JukeboxSong;
 import org.slf4j.Logger;
@@ -18,22 +18,22 @@ public class Constants {
 	public static final Path VINURLPATH = FabricLoader.getInstance().getGameDir().resolve(MOD_ID);
 
 	//resources
-	public static final ResourceLocation PLACEHOLDER_SOUND_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "placeholder_sound");
-	public static final ResourceLocation CUSTOM_RECORD_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "custom_record");
-	public static final ResourceLocation AUDIO_COMPONENT_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "audio_data");
-	public static final ResourceLocation KEY_MAPPING_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "mapping");
-	public static final ResourceLocation NETWORK_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "network_channel");
-	public static final ResourceLocation PROGRESS_HUD_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "progress_hud");
-	public static final ResourceLocation URL_DISC_SCREEN_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "disc_url_screen");
-	public static final ResourceLocation SET_URL_PACKET_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "set_url_packet");
-	public static final ResourceLocation PLAY_SOUND_PACKET_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "play_sound_packet");
-	public static final ResourceLocation STOP_SOUND_PACKET_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "stop_sound_packet");
-	public static final ResourceLocation GUI_PACKET_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "gui_packet");
-	public static final ResourceLocation SIMULATE_BUTTON_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "simulate_button");
-	public static final ResourceLocation SIMULATE_BUTTON_HOVER_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "simulate_button_highlighted");
-	public static final ResourceLocation SIMULATE_BUTTON_DISABLED_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "simulate_button_disabled");
-	public static final ResourceLocation LOCK_BUTTON_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "lock_button");
-	public static final ResourceLocation LOCK_BUTTON_DISABLED_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "lock_button_disabled");
+	public static final Identifier PLACEHOLDER_SOUND_ID = Identifier.fromNamespaceAndPath(MOD_ID, "placeholder_sound");
+	public static final Identifier CUSTOM_RECORD_ID = Identifier.fromNamespaceAndPath(MOD_ID, "custom_record");
+	public static final Identifier AUDIO_COMPONENT_ID = Identifier.fromNamespaceAndPath(MOD_ID, "audio_data");
+	public static final Identifier KEY_MAPPING_ID = Identifier.fromNamespaceAndPath(MOD_ID, "mapping");
+	public static final Identifier NETWORK_ID = Identifier.fromNamespaceAndPath(MOD_ID, "network_channel");
+	public static final Identifier PROGRESS_HUD_ID = Identifier.fromNamespaceAndPath(MOD_ID, "progress_hud");
+	public static final Identifier URL_DISC_SCREEN_ID = Identifier.fromNamespaceAndPath(MOD_ID, "disc_url_screen");
+	public static final Identifier SET_URL_PACKET_ID = Identifier.fromNamespaceAndPath(MOD_ID, "set_url_packet");
+	public static final Identifier PLAY_SOUND_PACKET_ID = Identifier.fromNamespaceAndPath(MOD_ID, "play_sound_packet");
+	public static final Identifier STOP_SOUND_PACKET_ID = Identifier.fromNamespaceAndPath(MOD_ID, "stop_sound_packet");
+	public static final Identifier GUI_PACKET_ID = Identifier.fromNamespaceAndPath(MOD_ID, "gui_packet");
+	public static final Identifier SIMULATE_BUTTON_ID = Identifier.fromNamespaceAndPath(MOD_ID, "simulate_button");
+	public static final Identifier SIMULATE_BUTTON_HOVER_ID = Identifier.fromNamespaceAndPath(MOD_ID, "simulate_button_highlighted");
+	public static final Identifier SIMULATE_BUTTON_DISABLED_ID = Identifier.fromNamespaceAndPath(MOD_ID, "simulate_button_disabled");
+	public static final Identifier LOCK_BUTTON_ID = Identifier.fromNamespaceAndPath(MOD_ID, "lock_button");
+	public static final Identifier LOCK_BUTTON_DISABLED_ID = Identifier.fromNamespaceAndPath(MOD_ID, "lock_button_disabled");
 	public static final ResourceKey<JukeboxSong> SONG_KEY = ResourceKey.create(Registries.JUKEBOX_SONG, PLACEHOLDER_SOUND_ID);
 	public static final ResourceKey<Item> ITEM_KEY = ResourceKey.create(Registries.ITEM, CUSTOM_RECORD_ID);
 }

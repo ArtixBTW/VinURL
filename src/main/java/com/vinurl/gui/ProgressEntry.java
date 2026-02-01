@@ -1,6 +1,6 @@
 package com.vinurl.gui;
 
-import net.minecraft.Util;
+import net.minecraft.util.Util;
 
 public class ProgressEntry {
 	public static final int MIN = 0;
