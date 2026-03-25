@@ -4,8 +4,8 @@ import com.mojang.brigadier.context.CommandContext;
 import com.vinurl.exe.Executable;
 import com.vinurl.sound.SoundManager;
 
-import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommands;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.network.chat.Component;
 import org.apache.commons.io.FileUtils;
@@ -20,9 +20,9 @@ public class Commands {
 
 	public static void register() {
 		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) ->
-			dispatcher.register(ClientCommandManager.literal(MOD_ID)
-				.then(ClientCommandManager.literal("delete").executes(Commands::deleteAudioFiles))
-				.then(ClientCommandManager.literal("update").executes(Commands::updateExecutables))
+			dispatcher.register(ClientCommands.literal(MOD_ID)
+				.then(ClientCommands.literal("delete").executes(Commands::deleteAudioFiles))
+				.then(ClientCommands.literal("update").executes(Commands::updateExecutables))
 			)
 		);
 	}

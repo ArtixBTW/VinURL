@@ -8,7 +8,7 @@ import com.vinurl.net.packet.PlaySoundPacket;
 import com.vinurl.net.packet.SetURLPacket;
 import com.vinurl.net.packet.StopSoundPacket;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
@@ -40,15 +40,13 @@ public class VinURL implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		PayloadTypeRegistry.serverboundPlay().register(SetURLPacket.TYPE, SetURLPacket.CODEC);
 
-		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register((itemGroup) -> {
-			itemGroup.accept(CUSTOM_RECORD);
-		});
+		PayloadTypeRegistry.clientboundPlay().register(GUIPacket.TYPE, GUIPacket.CODEC);
+		PayloadTypeRegistry.clientboundPlay().register(PlaySoundPacket.TYPE, PlaySoundPacket.CODEC);
+		PayloadTypeRegistry.clientboundPlay().register(StopSoundPacket.TYPE, StopSoundPacket.CODEC);
 
-		PayloadTypeRegistry.playC2S().register(SetURLPacket.TYPE, SetURLPacket.CODEC);
-		PayloadTypeRegistry.playS2C().register(GUIPacket.TYPE, GUIPacket.CODEC);
-		PayloadTypeRegistry.playS2C().register(PlaySoundPacket.TYPE, PlaySoundPacket.CODEC);
-		PayloadTypeRegistry.playS2C().register(StopSoundPacket.TYPE, StopSoundPacket.CODEC);
+		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register((itemGroup) -> itemGroup.accept(CUSTOM_RECORD));
 
 		ServerEvent.register();
 	}

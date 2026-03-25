@@ -35,7 +35,7 @@ public class URLDisc extends Item {
 			if (!component.lock()) {
 				ServerPlayNetworking.send((ServerPlayer) player, new GUIPacket(component.url(), component.duration()));
 			} else {
-				player.displayClientMessage(Component.translatable("item.vinurl.custom_record.message.locked"), true);
+				player.sendOverlayMessage(Component.translatable("item.vinurl.custom_record.message.locked"));
 			}
 		}
 		return InteractionResult.SUCCESS;

@@ -33,29 +33,29 @@ public class ServerEvent {
 				.orElse(ItemStack.EMPTY);
 
 			if (stack.isEmpty()) {
-				player.displayClientMessage(Component.translatable("message.vinurl.custom_record.missing"), true);
+				player.sendOverlayMessage(Component.translatable("message.vinurl.custom_record.missing"));
 				return;
 			}
 
 			AudioComponent component = stack.getOrDefault(AUDIO_COMPONENT, AudioComponent.DEFAULT);
 			if (component.lock()) {
-				player.displayClientMessage(Component.translatable("item.vinurl.custom_record.message.locked"), true);
+				player.sendOverlayMessage(Component.translatable("item.vinurl.custom_record.message.locked"));
 				return;
 			}
 
 			Url url = Url.parse(message.url());
 			if (url == null) {
-				player.displayClientMessage(Component.translatable("message.vinurl.custom_record.url.invalid"), true);
+				player.sendOverlayMessage(Component.translatable("message.vinurl.custom_record.url.invalid"));
 				return;
 			}
 
 			if (url.length() > MAX_URL_LENGTH) {
-				player.displayClientMessage(Component.translatable("message.vinurl.custom_record.url.long"), true);
+				player.sendOverlayMessage(Component.translatable("message.vinurl.custom_record.url.long"));
 				return;
 			}
 
 			if (message.duration() < MIN_DURATION || message.duration() > MAX_DURATION) {
-				player.displayClientMessage(Component.translatable("message.vinurl.custom_record.duration.invalid"), true);
+				player.sendOverlayMessage(Component.translatable("message.vinurl.custom_record.duration.invalid"));
 				return;
 			}
 
