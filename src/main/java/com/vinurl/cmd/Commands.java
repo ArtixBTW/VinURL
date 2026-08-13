@@ -1,10 +1,9 @@
 package com.vinurl.cmd;
 
 import com.mojang.brigadier.context.CommandContext;
-import com.vinurl.client.VinURLClient;
 import com.vinurl.exe.Executable;
 import com.vinurl.sound.SoundManager;
-import io.wispforest.owo.config.ui.ConfigScreen;
+
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
@@ -14,7 +13,6 @@ import org.apache.commons.io.FileUtils;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
-import static com.vinurl.client.VinURLClient.CLIENT;
 import static com.vinurl.util.Constants.MOD_ID;
 
 
@@ -25,7 +23,6 @@ public class Commands {
 			dispatcher.register(ClientCommandManager.literal(MOD_ID)
 				.then(ClientCommandManager.literal("delete").executes(Commands::deleteAudioFiles))
 				.then(ClientCommandManager.literal("update").executes(Commands::updateExecutables))
-				.then(ClientCommandManager.literal("config").executes(Commands::openConfig))
 			)
 		);
 	}
@@ -53,11 +50,6 @@ public class Commands {
 			}
 			ctx.getSource().sendFeedback(Component.translatable("command.vinurl.update.latest"));
 		});
-		return 1;
-	}
-
-	private static int openConfig(CommandContext<FabricClientCommandSource> ctx) {
-		ctx.getSource().getClient().tell(() -> CLIENT.setScreen(ConfigScreen.create(VinURLClient.CONFIG, null)));
 		return 1;
 	}
 }

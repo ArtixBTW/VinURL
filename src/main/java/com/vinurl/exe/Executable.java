@@ -3,6 +3,8 @@ package com.vinurl.exe;
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.lang3.SystemUtils;
 
+import com.vinurl.client.ClientConfig;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +19,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.vinurl.client.VinURLClient.CONFIG;
 import static com.vinurl.exe.Platform.PLATFORM;
 import static com.vinurl.util.Constants.LOGGER;
 import static com.vinurl.util.Constants.VINURLPATH;
@@ -132,7 +133,7 @@ public enum Executable {
 		if (DIRECTORY.toFile().exists() || DIRECTORY.toFile().mkdirs()) {
 			if (!FILE_PATH.toFile().exists()) {
 				return downloadExecutable();
-			} else if (CONFIG.updatesOnStartup()) {
+			} else if (ClientConfig.get().general.updatesOnStartup) {
 				checkForUpdates();
 			}
 			return true;
