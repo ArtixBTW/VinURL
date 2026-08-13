@@ -30,6 +30,9 @@
     "minecraft": ">=${mod_minecraft_version_start} <=${mod_minecraft_version_end}",
     "java": ">=21",
     "fabric-api": "*",
-    "owo-lib": "*"
+    "balm": "*"
+  },
+  "suggests": {
+    "cloth-config": "*"
   }
 }

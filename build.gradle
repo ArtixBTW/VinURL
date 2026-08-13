@@ -11,15 +11,34 @@ base {
 }
 
 repositories {
-	maven { url = "https://maven.wispforest.io" }
+	// balm
+	maven {
+		url "https://maven.twelveiterations.com/repository/maven-public/"
+		content {
+			includeGroup "net.blay09.mods"
+		}
+	}
+
+	// required by balm for JEI?
+	maven {
+		name "Jared's maven"
+		url "https://maven.blamejared.com/"
+	}
 }
 
 dependencies {
-	annotationProcessor (modImplementation"io.wispforest:owo-lib:${run_owo_version}")
 	minecraft "com.mojang:minecraft:${run_minecraft_version}"
 	mappings loom.officialMojangMappings()
 	modImplementation "net.fabricmc:fabric-loader:${run_fabric_loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${run_fabric_version}"
+
+	modImplementation("net.blay09.mods:balm-common:${run_balm_version}") {
+        changing = run_balm_version.endsWith("SNAPSHOT")
+    }
+
+    modImplementation("net.blay09.mods:balm-fabric:${run_balm_version}") {
+        changing = run_balm_version.contains("SNAPSHOT")
+    }
 
 	include (implementation "org.apache.commons:commons-exec:1.6.0")
 }

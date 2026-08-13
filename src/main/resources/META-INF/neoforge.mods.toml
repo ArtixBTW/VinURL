@@ -40,9 +40,17 @@ versionRange = "*"
 ordering = "NONE"
 side = "BOTH"
 
+
 [[dependencies."${mod_id}"]]
-modId="owo"
-mandatory=true
-versionRange="*"
-ordering="NONE"
-side="BOTH"
+modId = "balm"
+mandatory = true
+versionRange = "*"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."${mod_id}"]]
+modId = "cloth-config"
+mandatory = false
+versionRange = "*"
+ordering = "NONE"
+side = "CLIENT"
