@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 import java.util.function.Function;
@@ -57,7 +58,7 @@ public class VinURLSound {
 	}
 
 	private static List<ServerPlayer> playersInRange(ServerLevel level, BlockPos pos, double range) {
-		return level.getPlayers((player) -> player.position().distanceTo(pos.getCenter()) <= range);
+		return level.getPlayers((player) -> player.position().distanceTo(Vec3.atCenterOf(pos)) <= range);
 	}
 
 	private static List<ServerPlayer> playersInRange(ServerLevel level, Entity entity, double range) {

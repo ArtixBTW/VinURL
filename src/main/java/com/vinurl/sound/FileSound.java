@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.Util;
 import org.jetbrains.annotations.Nullable;
 
@@ -47,9 +48,11 @@ public class FileSound extends AbstractTickableSoundInstance {
 		}
 
 		else if (position != null) {
-			this.x = position.getCenter().x;
-			this.y = position.getCenter().y;
-			this.z = position.getCenter().z;
+			Vec3 center = Vec3.atCenterOf(position);
+
+			this.x = center.x;
+			this.y = center.y;
+			this.z = center.z;
 		}
 	}
 
