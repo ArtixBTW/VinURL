@@ -6,9 +6,15 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import com.mojang.serialization.DataResult;
+import com.vinurl.util.Url;
+
 import net.blay09.mods.balm.Balm;
 import net.blay09.mods.balm.platform.config.reflection.Config;
 import net.blay09.mods.balm.platform.config.reflection.NestedType;
+import net.blay09.mods.balm.platform.config.reflection.ValidateWith;
+import net.blay09.mods.balm.platform.config.schema.ConfigValidator;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.StringRepresentable;
 
 @Config(value = MOD_ID, type = "client")
@@ -34,19 +40,24 @@ public class ClientConfig {
 		public boolean showDescription = true;
 
 		@NestedType(String.class)
-		// @ValidateWith(WhitelistValidator.class)
+		@ValidateWith(WhitelistValidator.class)
 		public Set<String> urlWhitelist = new HashSet<>();
 
-		// not backported to this version (yet?)
-		// private static class WhitelistValidator implements ConfigValidator<Set<String>> {
-		// 	@Override
-		// 	public DataResult<Set<String>> validate(Set<String> whitelist) {
-		// 		boolean valid = whitelist.stream().allMatch(Url::isValid)
-		// 		return valid
-		// 			? DataResult.success(whitelist)
-		// 			: DataResult.error(() -> "invalid URL in whitelist");
-		// 	}
-		// }
+		public static class WhitelistValidator implements ConfigValidator<String> {
+			@Override
+			public DataResult<String> validate(String url) {
+				boolean valid = Url.isValid(url);
+				return valid
+						? DataResult.success(url)
+						: DataResult.error(() -> {
+							Component component = url.isEmpty()
+									? Component.translatable("vinurl.configuration.error.urlWhitelist.empty")
+									: Component.translatable("vinurl.configuration.error.urlWhitelist.invalid", url);
+
+							return component.getString();
+						});
+			}
+		}
 	}
 
 	public Download download = new Download();
